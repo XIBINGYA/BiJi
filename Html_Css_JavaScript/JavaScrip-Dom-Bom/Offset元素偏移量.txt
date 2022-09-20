@@ -1,0 +1,70 @@
+offset概述
+	offset翻译过来就是偏移量，使用offset系列相关属性可以动态的得到该元素的位置（偏移),大小等。
+
+		获取元素距离带有定位父元素的位置
+		获取元素自身的大小（宽度高度）
+
+		注:
+			返回的数值都时不带单位的
+
+	offset系列常用的属性:
+
+	element.offsetParent		返回作为该元素嗲有定位的父级元素 如果父级都没有定位则返回body
+	element.offsetTop			返回元素相对带有定位父元素上方的偏移量
+	element.offsetLeft			返回元素相对带有定位父元素左边框的偏移
+	element.offsetWidth			返回自身包括padding，边框，内容区的宽度，返回数值不带单位
+	element.offsetHeight		返回自身包括padding，边框，内容区的宽度，返回数值不带单位
+
+	offset是只读的，不能赋值。 赋值还是需要使用style
+
+
+client 元素可视区
+	client翻译过来就是客户端，我们使用client系列的相关属性来获取元素可视区的相关信息。通过client系列的相关信息属性可以动态的得到该元素的边框大小，元素大小等
+
+	element.clientTop		返回元素上边框的大小
+	element.clientLeft		返回元素左边框的大小
+	element.clientWidth		返回自身包括padding,内容区的宽度，不含边框,返回数值不带单位
+	element.clientHeight	返回自身包括padding,内容区的高度,不含边框,返回数值不带单位
+ 
+
+立即执行函数(也可以传递传输进去)
+ 	不需要被调用，立马能够自己执行的函数
+ 	写法
+ 		(function() {})()--第二个小括号可以看作是调用函数可以往里面传递参数 || (function(){} ());
+
+ 		立即执行函数最大的作用就是独立创建了一个作用域，里面所有的变量都是局部变量，不会有命名冲突
+
+scroll 元素滚动 也是滚动事件  
+
+	scroll翻译过来就是滚动的，我们使用scroll系列的相关属性可以动态得到该元素的大小，滚动距离等
+
+	element.scrollTop		返回被卷去的上侧距离，返回数值不带单位
+	element.scrollLeft		返回被卷去的左侧距离，返回数值不带单位
+	element.scrollWidth		返回自身实际的宽度,不含边框,返回数值不带单位
+	element.scrollHeight	返回自身实际的高度,不含边框,返回数值不带单位
+
+
+mouseenter 和 mouseover 区别
+	当鼠标移动到元素上时就会被触发mouseenter事件
+	类似mouseover,它们两者之间的差别是
+	mouseover鼠标经过自身盒子会触发，经过子盒子还会触发，mouseenter只会经过自身盒子触发
+	之所以这样，就是因为mouseenter不会冒泡
+
+
+动画函数封装
+	核心原理:通过定时器setInterval()不断移动盒子位置
+
+	实现步骤:
+		1.获取盒子当前位置
+		2.让盒子在当前位置上1个移动距离
+		3.利用定时器不断重复这个操作
+		4.加一个结束定时器的条件
+		5.注意：元素需要添加定位，才能使用element.style.left;
+
+
+	缓动效果原理：
+		缓动动画就是让元素运动速度有所变化
+
+		缓动动画公式：(目标值 - 现在的位置) / 10;
+
+		停止的条件是：让当前盒子位置等于目标位置就停止定时器

@@ -1,0 +1,6 @@
+键盘事件
+	onkeyup  	某个键盘案件被松开时触发
+	onkeydown	某个键盘按键被按下时触发
+	onkeypress	某个键盘事件被按下时触发（但是它不识别功能键 比如 ctrl shift箭头等）
+
+	e.keyCode可以获取按下键位的ASCII码值（只有keypress区分大小写)

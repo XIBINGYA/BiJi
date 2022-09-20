@@ -1,0 +1,94 @@
+BOM	
+	文档对象模型(Document OBject Model,简称BOM),是W3C组织推荐的处理可扩展标记语言(HTML或者XML)的标准编程接口
+
+	W3C已经定义了一系列的DOM接口，通过这些DOM接口可以改变网页的内容，结构和样式
+
+	获取元素
+		根据ID获取
+		 	使用getElementByld()方法可以获取带有ID的元素对象
+
+		 	注:
+			 	1.get获得 element元素 by通过 采用驼峰命名法
+			 	2.返回的是一个元素对象
+			 	3.console.dir 打印返回元素对象，可更好的查看里面的属性和方法
+			 	4.文档是从上往下加载的，所以<script>要写到body的最后
+			 	如
+			 	<body>
+			 		<div id="time">2022-5-25</div>
+			 		
+			 		<script>
+			 			var timer = document.getElementById('time');
+			 			console.dir(timer); 
+			 		</script>
+			 	</body>
+
+		根据标签名获取
+			使用getElementsByTagName()方法可以返回带有指定标签名的对象的集合
+
+			注:	返回的是 获取过来元素对象的集合 以伪数组的形式存储
+			如
+			 	<body>
+			 		<ul>
+				      <li>知否知否，啦啦啦啦</li>
+				      <li>知否知否，啦啦啦啦</li>
+				      <li>知否知否，啦啦啦啦</li>
+				      <li>知否知否，啦啦啦啦</li>
+				      <li>知否知否，啦啦啦啦</li>
+				    </ul>
+
+
+				    <ol id="ol">
+				      <li>哔哔哔</li>
+				      <li>哔哔哔</li>
+				      <li>哔哔哔</li>
+				      <li>哔哔哔</li>
+				      <li>哔哔哔</li>
+				    </ol>
+
+				    <script>
+				      var temr = document.getElementsByTagName("li");
+				      console.dir(temr);
+
+				      // 获取ol中的li
+				      var ol = document.getElementById("ol");
+				      var li = ol.getElementsByTagName("li");
+				    </script>
+			 	</body>
+
+		通过HTML5新增的方法获取
+			1.document.getElementsByClassName('类名');	根据类名返回元素对象集合
+
+			2.document.querySeector('选择器')		返回指定选择器中的第一个元素对象
+
+			3.document.querySeectorAll('选择器')		返回指定选择器的所有元素对象集合
+			如:
+			  <body>
+			    <ul>
+			      <li>知否知否，啦啦啦啦</li>
+			      <li>知否知否，啦啦啦啦</li>
+			      <li>知否知否，啦啦啦啦</li>
+			      <li>知否知否，啦啦啦啦</li>
+			      <li>知否知否，啦啦啦啦</li>
+			    </ul>
+
+			    <ol id="ol">
+			      <li>哔哔哔</li>
+			      <li>哔哔哔</li>
+			      <li>哔哔哔</li>
+			      <li>哔哔哔</li>
+			      <li>哔哔哔</li>
+			    </ol>
+			  	
+			  	<script>
+			  		// 选择ul中的第二个li
+				  	var ll = document.querySelector("li:nth-child(2)");
+			        console.log(ll);
+
+			        // 选择所有的li
+			        var l1 = document.querySelectorAll('li');
+			  	</script>
+			  </body>
+
+		特殊元素获取(body,html)
+			var bodyEle = doucument.body;
+			var htmlEle = doucument.documentElement;

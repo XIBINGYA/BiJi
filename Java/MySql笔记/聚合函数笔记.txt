@@ -1,0 +1,39 @@
+-- 聚合函数
+
+/*
+			1.概念:
+			将一列数据作为一个整体，进行纵向计算。
+			
+			2.集合函数分类
+			<1>count(列名) 统计数量(一般选用不为null的列)
+			<2>max(列名)		最大值
+			<3>min(列名)		最小值
+			<4>sum(列名)		求和
+			<5>avg(列名)		平均值
+			
+			3.聚合函数语法
+			select 聚合函数名(列名) from 表
+			
+*/
+
+
+-- 1.统计班级一共有多少个学生
+select count(id) from stu;  -- count统计的列名不能为null
+							-- count 不会统计null的值
+select count(*) from stu;
+select * from stu;
+-- 2.查询数学成绩的最高分
+select max(math) from stu;
+
+-- 3.查询数学成绩的最低分
+select min(math) from stu;
+
+-- 4.查询数学成绩的总分
+select sum(math) from stu;
+
+-- 5.查询数学成绩的平均分
+select avg(math) from stu;
+
+-- 6.查询英语成绩的最低分
+-- null值不参与所有聚合函数的运算
+select min(english) from stu;

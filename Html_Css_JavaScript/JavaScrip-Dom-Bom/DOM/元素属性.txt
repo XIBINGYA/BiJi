@@ -1,0 +1,101 @@
+获取属性值
+element.属性 获取属性值
+element.getAttribute('属性');
+
+区别:
+	element.属性 获取属性值
+			元素本身自带的属性
+		div.getAttribute('class');
+	element.getAttribute('属性');
+			主要获取元素自定义的属性(标准)我们程序员自定义的属性
+	如:
+		div.getAttribute('class');
+
+设置属性的值
+	element.属性 = '值';
+	element.setAttribute('属性', '值');(主要针对自定义属性);
+
+移除属性	removeAttribute(属性);
+	如:
+		div.removeAttribute('class');
+
+H5自定义属性:
+	H5规定自定义属性data-开头做为属性名并且赋值
+		比如<div data-index="1"></div>
+
+节点操作:
+	利用父子兄节点关系获取元素
+	逻辑性强，但时兼容性稍差
+
+	节点至少拥有nodeType(节点类型),nodeName(节点名称)和nodeValue(节点值)这三个基本属性
+
+	元素节点 nodeType 为1
+	属性节点 nodeType 为2
+	文本节点 nodeType 为3(文本节点包含文字，空格，换行等)
+
+	我们在实际开发中，节点操作主要操作的是元素节点
+
+节点层级
+		利用BOM数可以吧节点划分为不同的层级关系，常见的是父级兄层级关系
+
+	  // 1.父节点parentNode
+      var erweima = document.querySelector(".erweima");
+      // 得到的是离元素最近的父节点(亲爸爸) 假设找不到则返回null
+      console.log(erweima.parentNode);
+
+      // 子节点childNodes所有的子节点 包含 元素节点 文本节点等等
+      var ul = document.querySelector("ul");
+      console.log(ul.childNodes);
+
+      // children 获取所有的子元素节点 也是我们实际开发常用的
+      console.log(ul.children);
+      var ol = document.querySelector("ol");
+
+      // 1.firstChild 获取第一个子节点 不管是文本节点 还是元素节点
+      console.log(ol.firstChild);
+      console.log(ol.lastChild);
+
+
+      // 2.firstElementChild 获取第一个子元素节点 有兼容性问题
+      console.log(ol.firstElementChild);
+      console.log(ol.lastElementChild);
+      
+
+      // 3.实际开发写法 既没有兼容性问题又返回第一个子元素
+	  console.log(ol.children[0]); // 获取第一个子元素
+      console.log(ol.children[ol.children.length - 1]); // 获取最后一个子元素
+
+兄弟节点
+      兄弟节点nextSibling 下一个兄弟节点，包含元素节点或者文本节点等等
+      console.log(div.nextSibling);
+      console.log(div.previousSibling);		//上一个
+
+      2.nextElementSibling 得到下一个兄弟元素节点		有兼容性问题
+      console.log(div.nextElementSibling);
+      console.log(div.previousElementSibling);//上一个
+
+
+添加节点(元素节点)
+	1.创建元素节点
+	var li = document.createElement('li');
+
+	2.添加节点 node.appendChild(child) node 父级 child子级 后面追加元素 类似于数组中的push
+	var ul = document.querySelector('ul');
+	ul.appendChild(li);
+
+	3. 添加节点 node.insertBefore(child, 指定元素);
+	var lili = document.createElement('li');
+	ul.insertBefore(lili, ul.children[0]);
+
+	4,想要页面添加一个新的元素：1.创建元素 2.添加元素
+
+
+删除节点
+	父级.removeChild(子级);
+
+复制节点
+	ul.children[0].cloneNode(); 
+		注
+			括号里面为空或者是false 浅拷贝 只复制标签不复制里面的内容
+			node.cloneNode(true);  
+				括号里面为空或者是true 深拷贝 复制标签复制里面的内容

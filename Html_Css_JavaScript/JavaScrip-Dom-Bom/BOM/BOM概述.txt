@@ -1,0 +1,46 @@
+ BOM
+ 	BOM(Browser Object Model)即浏览器对象模型，它提供了独立于内容与浏览器窗口交互的对象，其核心对象是windows
+
+ 	BOM由一系列相关的对象结构，并且每个对象都提供了很多方法与属性
+
+
+ 	DOM
+ 		文档对象模型
+ 		DOM就是把文档当做一个对象来看待
+ 		DOM的顶级对象是document
+ 		DOM主要学习的是操作页面元素
+ 		DOM是W3C标准规范
+
+ 	BOM
+ 		浏览器对象模型
+ 		把[浏览器] 当做一个[对象]来看待
+ 		BOM的顶级对象是windows
+ 		BOM学习的是浏览器窗口交换的一些对象
+ 		BOM是浏览器厂商在各自浏览器上定义的，兼容性较差
+
+window对象
+	window对象是浏览器的顶级对象
+
+窗口加载事件
+	window.onload = function(){}
+	或
+	window.addEventListener('load', function(){})
+
+	window.onload是窗口(页面)加载事件，当文档内容完全加载完成会触发该事件(包括图像，脚本文件，css文件等),就调用的处理函数。
+
+	document.addEventListener('DOMContentLoaded', function(){
+		alret(33);
+	})
+		注:
+			load是等页面内容全部加载完毕,包含页面dom元素 图片 flash css 等等
+			DOMContentLoaded是DOM加载完毕，不包含图片falsh css 等就可以执行加载速度比load更快一些
+
+
+调整窗口大小事件
+	window.onresize = function(){}
+	window.addEventListener("resize", function(){})
+
+	window.onresize是调整窗口大小加载事件，当触发时就调用的处理函数
+	注:
+		只要窗口大小发生像素变化,就会触发这个事件
+		我们经常利用这个事件完成响应式布局。windows.innerWidth当前屏幕的宽度

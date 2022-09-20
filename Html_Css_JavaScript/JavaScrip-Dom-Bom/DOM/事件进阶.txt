@@ -1,0 +1,71 @@
+方法监听事件注册方式
+	addEventListener() 它是一个方法
+	特点:同一个元素同一个事件可以注册多个监听器
+
+	语法：
+		eventTarget.addEventListener(type, listener[,userCapture])
+		(添加事件的对象)
+
+		type:事件类型字符串, 如 ：click, mouseover,不用带on
+		listener:事件处理函数,事件发生时，会调用该监听函数
+		userCapture:可选参数，是一个布尔值，默认是false
+
+		如
+			btn.addEventListener('click', function(){
+				alert(22);
+			})								
+
+删除事件:
+	传统方式: div.onclick = function(){
+				div.onclick = null;
+			}
+	方法监听注册事件removeEventListener
+	
+		div.addEventListener('click', fn);
+
+		function fn(){
+			alert(22);
+			div.removeEventListener('click', fn);
+		}
+
+事件对象
+	e.target 返回的是触发事件的对象(元素) this 返回的是绑定事件的对象(元素)
+	var div = document.querySelector('div');
+	div.addEventListener('click', function(e){
+		console.log(e.target);
+		console.log(this);
+	})
+	this和e.target 区别：e.target 点击了那个元素，就返回那个元素，this那个元素绑定了这个点击事件，那么就返回谁
+
+常见的事件对象的属性和方法
+	e.type 返回事件的类型
+
+	阻止默认行为(事件)，让链接不跳转或者让提交按钮不提交 preventDefault();
+	var a = document.querySelector('a');
+	a.addEventListener('click', function(e)){
+		e.preventDefault();
+	}
+
+	阻止冒泡stopPropagation() 有兼容性问题
+
+
+	事件委托：
+		不是每个子节点单独设置事件监听器，而是事件监听器设置在其父节点上，然后利用冒泡原理影响设置每个子节点
+
+鼠标事件	
+
+	contextmenu禁止右键菜单
+	document.addEventListener('contextmenu', function(e){
+		e.preventDefault();
+	})
+
+	禁止选中文字selectstart
+	document.addEventListener('selectstart', function(e){
+		e.preventDefault();
+	})
+
+	e.clientX和e.clientY获取鼠标点击后的坐标(可视窗口)
+	e.pageX和e.pageY获取鼠标点击后的坐标(整个页面)
+	e.screenX和e.screenY获取鼠标点击后的坐标(电脑屏幕)
+
+鼠标移动事件：mousemove	

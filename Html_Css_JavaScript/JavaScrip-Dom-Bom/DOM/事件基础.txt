@@ -1,0 +1,94 @@
+事件基础
+	事件是有三部分组成 事件源 事件类型 事件处理程序 称之为事件三要素
+		事件源:事件被触发的对象
+		事件类型:鼠标点击，鼠标经过，键盘按下等
+		事件处理程序：触发事件之后的效果
+
+		如:
+				<body>
+				    <button id="btn">唐伯虎</button>
+
+				    <script>
+				      // 获取事件院
+				      var btn = document.getElementById("btn");
+
+				      // 注册事件/绑定事件
+				      btn.onclick = function () {
+				      // 添加处理程序
+				        alert("点秋香");
+				      };
+				    </script>
+				</body>
+
+
+操作元素:
+	修改元素内容
+		1. element.innerText
+			从起始位置到终止位置的内容，但它去除html标签，同时空格和换行也会去掉
+		
+		如:
+			  <body>
+			    <button id="btn">显示当前时间</button>
+			    <div>某个时间</div>
+			    <script>
+
+			      var btn = document.querySelector("button");
+			      var div = document.querySelector("div");
+
+			      btn.onclick = function () {
+			        div.innerText = getNowTime();
+			      };
+
+			      function getNowTime() {
+			        var date = new Date();
+
+			        var year = date.getFullYear();
+			        var month = date.getMonth() + 1;
+			        var dates = date.getDate();
+			        var arr = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五"];
+			        var day = date.getDay();
+			        return "今天是" + year + "年" + month + "月" + dates + "日" + arr[day];
+			      }
+			    </script>
+			  </body>
+
+		2. element.innerHTML(识别html标签)	使用最多
+			起始位置到终止位置的全部内容，包括html标签，同时保留空格和换行
+
+		innerText和innerHTML是修改普通盒子 比如div标签里面的内容的
+
+		表单里面的值 文字内容是通过value来修改的
+		如
+			input.value = "...";
+
+		禁用表单，不能被点击-disabled
+			btn.disabled = true; // 禁用按钮
+
+
+修改css样式
+	element.style 		 行内样式操作 //如果样式比较少或者功能比较简单的情况下使用
+	element.className	 类名样式操作	
+		className 会直接更改元素类名，会覆盖原先的类名
+			如果想保留原先没类名可以这样操作
+				this.className = "原先css类名 需要添加的css类名";
+
+	注:
+		JS里面的样式采用驼峰命名法 比如 fontSize，backgroundColor
+		JS修改style样式操作，产生的是行内样式，css权重比较高
+
+		如:
+			    <script>
+			      var div = document.querySelector("div");
+
+			      div.onclick = function () {
+			        this.style = "background-color:skyblue";
+			      	this.className = "css类名";
+			      };
+			    </script>
+
+	事件:
+		获得焦点onfocus 失去焦点onblur
+		光标点击文本框就会获得焦点，文本框失去光标就是失去焦点）
+
+		鼠标经过onmouseover
+		鼠标移出onmouseout
